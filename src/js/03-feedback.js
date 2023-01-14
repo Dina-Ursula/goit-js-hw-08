@@ -27,10 +27,10 @@ const onFormSubmit = function (evt) {
 form.addEventListener('submit', onFormSubmit);
 form.addEventListener('input', throttle(onInputHandle, 500));
 
-try {
-  const storage = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+let storage = localStorage.getItem(LOCAL_STORAGE_KEY);
+if (storage) {
+  storage = JSON.parse(storage);
+
   email.value = storage.email;
   message.value = storage.message;
-} catch (err) {
-  console.log('error parsing local storage', err);
 }
